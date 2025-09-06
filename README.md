@@ -1,2 +1,1 @@
-# parcial1ds8
-ok ya puedo
+# parcial1ds8 Simulador de Parking
