@@ -1,51 +1,47 @@
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich.prompt import Prompt
 import os
 
-# Importar módulos, si no existen aún, avisar pero no detener la app
-try:
-    import config
-    import autos
-    import estado
-    import eventos
-except ImportError:
-    print("Algunos módulos aún no están listos.")
+console = Console()
 
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def mostrar_menu():
-    print("\n--- Sistema de Parqueo ---")
-    print("1. Simular entrada de autos")
-    print("2. Simular salida de autos")
-    print("3. Ver estado del parqueo")
-    print("4. Ver historial de eventos")
-    print("5. Salir")
+    limpiar_pantalla()
+    console.print(Panel("[bold cyan]SISTEMA DE PARQUEO[/bold cyan]", expand=False))
+
+    table = Table(show_header=True, header_style="bold magenta", expand=False)
+    table.add_column("Opción", justify="center", style="bold yellow")
+    table.add_column("Descripción", style="green")
+    table.add_row("1", "Simular entrada de autos")
+    table.add_row("2", "Simular salida de autos")
+    table.add_row("3", "Ver estado del parqueo")
+    table.add_row("4", "Ver historial de eventos")
+    table.add_row("5", "Salir")
+    console.print(table)
 
 def main():
     while True:
-        limpiar_pantalla()
         mostrar_menu()
-        opcion = input("Seleccione una opción: ")
+        opcion = Prompt.ask("[bold white]Seleccione una opción[/bold white]", choices=["1", "2", "3", "4", "5"])
         if opcion == "1":
-            # Ejemplo de llamada correcta: resultado = autos.simular_entrada()
-            print("Función de entrada de autos (a implementar)")
-            input("Presione Enter para continuar...")
+            console.print("[green]Función de entrada de autos (a implementar)[/green]")
+            console.input("[bold cyan]Presione Enter para continuar...[/bold cyan]")
         elif opcion == "2":
-            print("Función de salida de autos (a implementar)")
-            input("Presione Enter para continuar...")
+            console.print("[green]Función de salida de autos (a implementar)[/green]")
+            console.input("[bold cyan]Presione Enter para continuar...[/bold cyan]")
         elif opcion == "3":
-            # Ejemplo: estado_info = estado.obtener_estado()
-            print("Función de estado del parqueo (a implementar)")
-            input("Presione Enter para continuar...")
+            console.print("[yellow]Función de estado del parqueo (a implementar)[/yellow]")
+            console.input("[bold cyan]Presione Enter para continuar...[/bold cyan]")
         elif opcion == "4":
-            # Ejemplo: historial = eventos.obtener_historial()
-            print("Función de historial de eventos (a implementar)")
-            input("Presione Enter para continuar...")
+            console.print("[yellow]Función de historial de eventos (a implementar)[/yellow]")
+            console.input("[bold cyan]Presione Enter para continuar...[/bold cyan]")
         elif opcion == "5":
-            print("¡Hasta luego!")
+            console.print(Panel("[bold green]¡Hasta luego![/bold green]", expand=False))
             break
-        else:
-            print("Opción inválida. Intente de nuevo.")
-            input("Presione Enter para continuar...")
 
 if __name__ == "__main__":
-    main()
+    main()   
