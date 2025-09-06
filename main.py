@@ -1,11 +1,16 @@
-# main.py
+import os
+
+# Importar módulos, si no existen aún, avisar pero no detener la app
 try:
     import config
     import autos
     import estado
     import eventos
 except ImportError:
-    print("Algunos módulos aún no están listos. ")
+    print("Algunos módulos aún no están listos.")
+
+def limpiar_pantalla():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def mostrar_menu():
     print("\n--- Sistema de Parqueo ---")
@@ -17,25 +22,30 @@ def mostrar_menu():
 
 def main():
     while True:
+        limpiar_pantalla()
         mostrar_menu()
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
-            # Aquí deberás llamar a la función para simular entrada de autos
+            # Ejemplo de llamada correcta: resultado = autos.simular_entrada()
             print("Función de entrada de autos (a implementar)")
+            input("Presione Enter para continuar...")
         elif opcion == "2":
-            # Aquí deberás llamar a la función para simular salida de autos
             print("Función de salida de autos (a implementar)")
+            input("Presione Enter para continuar...")
         elif opcion == "3":
-            # Aquí deberás mostrar el estado del parqueo
+            # Ejemplo: estado_info = estado.obtener_estado()
             print("Función de estado del parqueo (a implementar)")
+            input("Presione Enter para continuar...")
         elif opcion == "4":
-            # Aquí deberás mostrar el historial de eventos
+            # Ejemplo: historial = eventos.obtener_historial()
             print("Función de historial de eventos (a implementar)")
+            input("Presione Enter para continuar...")
         elif opcion == "5":
             print("¡Hasta luego!")
             break
         else:
             print("Opción inválida. Intente de nuevo.")
+            input("Presione Enter para continuar...")
 
 if __name__ == "__main__":
     main()
