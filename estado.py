@@ -59,6 +59,7 @@ class EstadoParqueo:
         if capacidad_max <= 0:
             raise ValueError("capacidad_max debe ser > 0")
 
+        #definiendo atributos
         self.capacidad_max = int(capacidad_max)               # capacidad máxima del parqueo
         self.umbrales = umbrales or UmbralesOcupacion()       # usa umbrales por defecto si no se pasan
         self.umbrales.validar()                               # valida que los umbrales sean correctos
